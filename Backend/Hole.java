@@ -11,10 +11,12 @@ public class Hole {
         hindex = index;
         tuz = false;
     }
-    boolean markAstuz(){
+
+    boolean markAsTuz(){
         tuz = true;
         return tuz;
     }
+
     boolean checkTuz(){
         return tuz;
     }
@@ -30,5 +32,6 @@ public class Hole {
     void changeNum(int Cnum){
         balls_num = Cnum;
     }
+    void incrementBalls() { balls_num++;}
 
 }
