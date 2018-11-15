@@ -31,19 +31,15 @@ public class Board {
     }
 
 
-    public void moveTheBalls(Hole hole){
-        int numberOfBalls = hole.getNum();
-        boolean isPlayer = hole.getSide();
+    public void moveTheBalls(int index){
+        int numberOfBalls = allTheHoles.get(index).getNum();
+        boolean isPlayer = allTheHoles.get(index).getSide();
         int allTheHolesSize = allTheHoles.size();
-        int indexOfHole;
-        if (isPlayer){
-            indexOfHole = hole.getIndex();
-        }else{
-            indexOfHole = hole.getIndex() + 8;
-        }
+        int indexOfHole = index;
+
 
         //the same hole is cleared and only 1 ball is left there
-        hole.changeNum(1);
+        allTheHoles.get(index).changeNum(1);
         numberOfBalls--;
 
         //we have less balls now and we start putting them to the following holes
@@ -111,6 +107,9 @@ public class Board {
 
     }
     public void playTheGame(){
+        //loop here
+        //1. Player's turn - all his holes (except for the one that is Opponent's tuz) and his tuz are activated - opponent's holes should be deactivated
+        //2. Opponent's turn - all his holes (except for the one that is Player's tuz) and his tuz are activated - player's holes should be deactivated
 
     }
 }
