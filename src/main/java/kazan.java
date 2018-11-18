@@ -1,5 +1,4 @@
 package Backend;
-
 public class kazan {
     private int number;
     private boolean side;
@@ -13,12 +12,12 @@ public class kazan {
     public int return_num(){
         return number;
     }
-    public void check_win(){
+    public boolean check_win(){
         if (number>=82){
-            System.out.println("You win");
+            return true;
         }
         else {
-            System.out.println("The game is not finish");
+            return false;
         }
     }
 }
