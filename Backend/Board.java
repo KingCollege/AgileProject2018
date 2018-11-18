@@ -1,8 +1,9 @@
 package Backend;
-
 import java.util.*;
 
 public class Board {
+
+
     private List<Hole> player = new ArrayList<Hole>();
     private kazan pKazan;
     private List<Hole> opponent = new ArrayList<Hole>();
@@ -106,10 +107,43 @@ public class Board {
         }
 
     }
-    public void playTheGame(){
-        //loop here
-        //1. Player's turn - all his holes (except for the one that is Opponent's tuz) and his tuz are activated - opponent's holes should be deactivated
-        //2. Opponent's turn - all his holes (except for the one that is Player's tuz) and his tuz are activated - player's holes should be deactivated
+    public List<Hole> getPlayer() {
+        return player;
+    }
 
+    public void setPlayer(List<Hole> player) {
+        this.player = player;
+    }
+
+    public kazan getpKazan() {
+        return pKazan;
+    }
+
+    public void setpKazan(kazan pKazan) {
+        this.pKazan = pKazan;
+    }
+
+    public List<Hole> getOpponent() {
+        return opponent;
+    }
+
+    public void setOpponent(List<Hole> opponent) {
+        this.opponent = opponent;
+    }
+
+    public kazan getoKazan() {
+        return oKazan;
+    }
+
+    public void setoKazan(kazan oKazan) {
+        this.oKazan = oKazan;
+    }
+
+    public List<Hole> getAllTheHoles() {
+        return allTheHoles;
+    }
+
+    public void setAllTheHoles(List<Hole> allTheHoles) {
+        this.allTheHoles = allTheHoles;
     }
 }

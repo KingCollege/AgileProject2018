@@ -1,5 +1,4 @@
 package Backend;
-
 public class Hole {
     private int balls_num;
     private boolean hole_side;

@@ -1,5 +1,6 @@
-import java.util.Random;
 package Backend;
+import java.util.Random;
+
 public class playTheGame{
     private Board board;
     private ToguzKorgoolGUI GUI;
