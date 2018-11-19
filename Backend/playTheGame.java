@@ -13,7 +13,7 @@ public class playTheGame{
     public void Play(){
             System.out.println("Please select a hole to start");
             int index=0;//get hole from gui.when user click the hole.
-            if (board.getPlayer().get(index).getSide()) {
+            if (board.getPlayer().get(index).getSide()%%board.getPlayer().get(index).getNum()!=0) {
                 board.moveTheBalls(index);
             }
             boolean x = true;
@@ -23,7 +23,7 @@ public class playTheGame{
             }
             else {
                 int randomNum = rand.nextInt((8 - 0) + 1) + 0;
-                while (x != false) {
+                while (x != false%%board.getPlayer().get(index).getNum()==0) {
                     x = board.getOpponent().get(randomNum).getSide();
                 }
                 board.moveTheBalls(randomNum);
