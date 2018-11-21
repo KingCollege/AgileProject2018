@@ -91,7 +91,7 @@ public class Board {
             }
             //if there were 3 balls in the hole & the index of the hole is not 9 (actually 8) - it becomes a tuz
             if(ballsInLastHole == 3 && allTheHoles.get(indexOfHole).getIndex() != 8 && tryMarkAsTuz){
-                    allTheHoles.get(indexOfHole).markAsTuz();
+                    allTheHoles.get(indexOfHole).markAsTuz(); //this hole is yours now
                     //all the balls are transfered to the players kazan
                     if(isPlayer){
                         pKazan.add_balls(3);
