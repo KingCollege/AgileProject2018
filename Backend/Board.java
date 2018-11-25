@@ -106,6 +106,22 @@ public class Board {
             }
         }
 
+        //capture all the balls from tuz to correct kazan's
+        if (pHasTuz){
+            if (allTheHoles.get(pTuzIndex).getNum()>0){
+                int balls = allTheHoles.get(pTuzIndex).getNum();
+                allTheHoles.get(pTuzIndex).changeNum(0);
+                pKazan.add_balls(balls);
+            }
+        }
+        if (oHasTuz){
+            if (allTheHoles.get(oTuzIndex).getNum()>0){
+                int balls = allTheHoles.get(oTuzIndex).getNum();
+                allTheHoles.get(oTuzIndex).changeNum(0);
+                pKazan.add_balls(balls);
+            }
+        }
+
     }
     public List<Hole> getPlayer() {
         return player;
