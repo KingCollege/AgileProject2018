@@ -1,9 +1,9 @@
 import java.util.Random;
 /**
- * Write a description of class playTheGame here.
+ * The class the links front-end gui and back-end functionalities together
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Mandu, Adam, Tao, Marta
+ * @0.1.1
  */
 public class playTheGame
 {
@@ -28,7 +28,7 @@ public class playTheGame
                 continue;
             }
             if(pTurn)
-                return "Log: " + (chooseHole - 9);
+                return "Log: " + (chooseHole - 8);
         }
         return "Went wrong!";
     }

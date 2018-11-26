@@ -12,6 +12,7 @@ public class Hole {
 
     boolean markAsTuz(){
         tuz = true;
+        hole_side = !hole_side;
         return tuz;
     }
 
