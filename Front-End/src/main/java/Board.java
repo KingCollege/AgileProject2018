@@ -1,5 +1,5 @@
-import java.util.*; 
 
+import java.util.*; 
 public class Board {
     private List<Hole> player = new ArrayList<Hole>();
     private kazan pKazan;
@@ -85,7 +85,6 @@ public class Board {
                     tryMarkAsTuz = true;
                 }
             }
-            
             if (!isPlayer && !oHasTuz){
                 //& the opponent's tuz index is different than indexOfHole (if he has one)
                 if (pHasTuz){
@@ -100,12 +99,14 @@ public class Board {
             if(ballsInLastHole == 3 && allTheHoles.get(indexOfHole).getIndex() != 8 && tryMarkAsTuz){
                     allTheHoles.get(indexOfHole).markAsTuz();
                     //all the balls are transfered to the players kazan
-     
+                    allTheHoles.get(indexOfHole).markAsTuz(); //this hole is yours now
+                    //all the balls are transfered to the players kazan
                     if(isPlayer){
                         pKazan.add_balls(3);
                         pHasTuz = true;
                         pTuzIndex = allTheHoles.get(indexOfHole).getIndex();
                         allTheHoles.get(indexOfHole).changeNum(0);
+
                     }else{
                         oKazan.add_balls(3);
                         oHasTuz = true;
@@ -114,6 +115,24 @@ public class Board {
                     }
             }
         }
+        
+        
+        //capture all the balls from tuz to correct kazan's
+        if (pHasTuz){
+            if (allTheHoles.get(pTuzIndex).getNum()>0){
+                int balls = allTheHoles.get(pTuzIndex).getNum();
+                allTheHoles.get(pTuzIndex).changeNum(0);
+                pKazan.add_balls(balls);
+            }
+        }
+        if (oHasTuz){
+            if (allTheHoles.get(oTuzIndex).getNum()>0){
+                int balls = allTheHoles.get(oTuzIndex).getNum();
+                allTheHoles.get(oTuzIndex).changeNum(0);
+                pKazan.add_balls(balls);
+            }
+        }
+        
         //need a check to switch turn with computer
         if(playTheGame.getPlayerTurn()){
             playTheGame.setPlayerTurn(false);
