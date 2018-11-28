@@ -1,3 +1,9 @@
+
+/**
+ * A class that describes a kazan.
+ * @author Marta Krawczyk, Tao Lin, Mandu Shi and Adam Able
+ * @version    2018.11.28
+ */
 public class kazan {
     private int number;
     private boolean side;
