@@ -1,9 +1,8 @@
 import java.util.Random;
 /**
  * The class the links front-end gui and back-end functionalities together
- *
- * @Mandu, Adam, Tao, Marta
- * @0.1.1
+ * @author Mandu Shi, Tao Lin, Marta Krawczyk and Adam Able
+ * @version    2018.11.28
  */
 public class playTheGame
 {

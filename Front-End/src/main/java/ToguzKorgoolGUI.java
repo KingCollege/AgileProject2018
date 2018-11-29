@@ -5,6 +5,12 @@ import java.awt.event.ActionListener;
 import java.util.stream.Collectors;
 import javax.swing.*;
 
+
+/**
+ * The class ...
+ * @author Mandu Shi, Tao Lin, Marta Krawczyk and Adam Able
+ * @version    2018.11.28
+ */
 public class ToguzKorgoolGUI extends JFrame implements ActionListener{
     private static int MAX_ROCKS = 9;
     private static int MAX_HOLES = 9;
