@@ -105,7 +105,7 @@ public class Board {
             if (allTheHoles.get(oTuzIndex).getNum()>0){
                 int balls = allTheHoles.get(oTuzIndex).getNum();
                 allTheHoles.get(oTuzIndex).changeNum(0);
-                pKazan.add_balls(balls);
+                oKazan.add_balls(balls);
             }
         }
     }
