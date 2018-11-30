@@ -33,6 +33,8 @@ public class BoardTest {
         board = new Board;
     }
 
+
+
     @Test
     public void testConstructor() {
         assertEquals("At first Player's kazan should have 0 balls", 0, getpKazan().return_num());
@@ -44,6 +46,7 @@ public class BoardTest {
             assertEquals("Hole " + i + "out of 18 should have 9 balls", 9, hole.getNum());
         }
     }
+
     /**
      * Tears down the test fixture.
      * (Called after every test case method.)
@@ -58,12 +61,10 @@ public class BoardTest {
      * (Called before every test case method.)
      */
     @Before
-    public void setUp(){
-        board = new Board;
-    }
+    setUp();
 
     @Test
-    public void testMoveBalls() {
+    public void testMoveBallsAtTheBegining() {
         //check if the balls are moved correctly (we don't have any tuz yet)
         //but the balls may be captured to kazan from the last hole
         int index = 3;
@@ -86,23 +87,26 @@ public class BoardTest {
      * (Called after every test case method.)
      */
     @After
-    public void tearDown(){
-        board = null;
-    }
+    tearDown();
 
     /**
      * Sets up the test fixture.
      * (Called before every test case method.)
      */
     @Before
-    public void setUp(){
-        board = new Board;
-    }
+    setUp();
 
 
     @Test
-    public void testTryMarkAsTuz(){
-        tryMarkAsTuz(int index, boolean isPlayerTemp)
+    public void testTryMarkAsTuzPlayer(){
+        int index1 = 10;
+        board.getAllTheHoles().get(index1).changeNum(3);
+        tryMarkAsTuz(index1, true);
+        assertEquals("The hole should become a player's tuz.", true, board.getAllTheHoles().get(index1).checkTuz());
+
+        int index2 = 11;
+        tryMarkAsTuz(index2, true);
+        assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", true, board.getAllTheHoles().get(index2).checkTuz());
     }
 
     /**
@@ -110,21 +114,66 @@ public class BoardTest {
      * (Called after every test case method.)
      */
     @After
-    public void tearDown(){
-        board = null;
-    }
+    tearDown();
+
 
     /**
      * Sets up the test fixture.
      * (Called before every test case method.)
      */
     @Before
-    public void setUp(){
-        board = new Board;
+    setUp();
+
+
+    @Test
+    public void testTryMarkAsTuzOpponent(){
+        int index1 = 2;
+        board.getAllTheHoles().get(index1).changeNum(3);
+        tryMarkAsTuz(index1, false);
+        assertEquals("The hole should become an opponent's tuz.", true, board.getAllTheHoles().get(index1).checkTuz());
+
+        int index2 = 4;
+        tryMarkAsTuz(index2, false);
+        assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", true, board.getAllTheHoles().get(index2).checkTuz());
     }
+
+    /**
+     * Tears down the test fixture.
+     * (Called after every test case method.)
+     */
+    @After
+    tearDown();
+
+
+    /**
+     * Sets up the test fixture.
+     * (Called before every test case method.)
+     */
+    @Before
+    setUp();
 
     @Test
     public void testTryCaptureBalls(){
+        //can't capture the balls if the number of balls is odd - when constructed every hole has 9 balls
+        int index1 = 11;
+        tryCaptureBalls(index1, true);
+        assertEquals("The player shouldn't capture the balls - the hole belongs to the opponent but has an odd number of balls.", 9, board.getAllTheHoles().get(index1).getNum());
+
+        int index2 = 2;
+        tryCaptureBalls(index2, false);
+        assertEquals("The opponent shouldn't capture the balls - the hole belongs to the player but has an odd number of balls.", 9, board.getAllTheHoles().get(index2).getNum());
+
+
+        //can't capture the balls if the number of balls if the hole belongs to the person who made the move (even when the number of balls is evem)
+        index1 = 3;
+        board.getAllTheHoles().get(index1).changeNum(10);
+        tryCaptureBalls(index1, true);
+        assertEquals("The player shouldn't capture the balls - the hole belongs to the player.", 10, board.getAllTheHoles().get(index1).getNum());
+
+        index2 = 12;
+        board.getAllTheHoles().get(index2).changeNum(10);
+        tryCaptureBalls(index2, false);
+        assertEquals("The opponent shouldn't capture the balls - the hole belongs to the opponent.", 10, board.getAllTheHoles().get(index2).getNum());
 
     }
 
@@ -133,18 +182,14 @@ public class BoardTest {
      * (Called after every test case method.)
      */
     @After
-    public void tearDown(){
-        board = null;
-    }
+    tearDown();
 
     /**
      * Sets up the test fixture.
      * (Called before every test case method.)
      */
     @Before
-    public void setUp(){
-        board = new Board;
-    }
+    setUp();
 
     @Test
     public void testCaptureBallsFromTuz(){
@@ -156,9 +201,7 @@ public class BoardTest {
      * (Called after every test case method.)
      */
     @After
-    public void tearDown(){
-        board = null;
-    }
+    tearDown();
 
 
 
