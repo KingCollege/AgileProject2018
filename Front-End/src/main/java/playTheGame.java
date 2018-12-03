@@ -3,21 +3,21 @@ import java.util.Random;
  * The class the links front-end gui and back-end functionalities together
  *
  * @Mandu, Adam, Tao, Marta
- * @0.1.1
+ * @0.1.2
  */
 public class playTheGame
 {
     public static Board board = new Board();
     private static boolean pTurn = true;
-    
+
     public static boolean getPlayerTurn(){
         return pTurn;
     }
-    
+
     public static void setPlayerTurn(boolean turn){
         pTurn = turn;
     }
-    
+
     public static String computerPlay(){
         Random r = new Random();
         //computer holes start after 9
@@ -34,6 +34,6 @@ public class playTheGame
     }
 
     public static void main(String[] args) {
-        new ToguzKorgoolGUI();
+        new StartPageGUI();
     }
 }
