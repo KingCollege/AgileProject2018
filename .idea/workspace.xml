@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="899c7a83-fc56-4619-9eaa-816a3360b8ef" name="Default" comment="" />
+    <list default="true" id="899c7a83-fc56-4619-9eaa-816a3360b8ef" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/.gradle/5.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/.gradle/5.0/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/.gradle/5.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/.gradle/5.0/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/.gradle/5.0/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/.gradle/5.0/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/.gradle/5.0/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/.gradle/5.0/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/.gradle/5.0/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/.gradle/5.0/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/.gradle/5.0/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/.gradle/5.0/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/build/classes/java/main/StartPageGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/build/classes/java/main/StartPageGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/build/classes/java/main/WindowHelpGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/build/classes/java/main/WindowHelpGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/build/distributions/Front-End.tar" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/build/distributions/Front-End.tar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/build/distributions/Front-End.zip" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/build/distributions/Front-End.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/build/libs/Front-End.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/build/libs/Front-End.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/src/main/java/StartPageGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/src/main/java/StartPageGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/src/main/java/WindowHelpGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/src/main/java/WindowHelpGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front-End/src/main/java/playTheGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Front-End/src/main/java/playTheGame.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,14 +27,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.5060932">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="ToguzKorgoolGUI.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/ToguzKorgoolGUI.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1615">
-                  <caret line="111" column="62" selection-start-line="111" selection-start-column="62" selection-end-line="111" selection-end-column="62" />
+                <state relative-caret-position="391">
+                  <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -25,27 +42,29 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="StartPageGUI.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="StartPageGUI.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/StartPageGUI.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1031">
-                  <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+                <state relative-caret-position="170">
+                  <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#2556#2557#0" expanded="true" />
-                    <element signature="e#2591#2592#0" expanded="true" />
+                    <element signature="e#2864#2865#0" expanded="true" />
+                    <element signature="e#2899#2900#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="WindowHelpGUI.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="WindowHelpGUI.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/WindowHelpGUI.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
+                <state relative-caret-position="170">
+                  <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="e#548#549#0" expanded="true" />
+                    <element signature="e#575#576#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -54,8 +73,8 @@
           <file leaf-file-name="playTheGame.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/playTheGame.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+                <state relative-caret-position="85">
+                  <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
                   <folding>
                     <element signature="method#computerPlay#0;class#playTheGame#0" />
                   </folding>
@@ -66,11 +85,11 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/Board.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1881">
+                <state relative-caret-position="2244">
                   <caret line="134" column="8" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="8" />
                 </state>
               </provider>
@@ -92,9 +111,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Backend/Board.java" />
-        <option value="$PROJECT_DIR$/Front-End/src/main/java/StartPageGUI.java" />
-        <option value="$PROJECT_DIR$/Front-End/src/main/java/WindowHelpGUI.java" />
         <option value="$PROJECT_DIR$/Front-End/src/main/java/playTheGame.java" />
+        <option value="$PROJECT_DIR$/Front-End/src/main/java/WindowHelpGUI.java" />
+        <option value="$PROJECT_DIR$/Front-End/src/main/java/StartPageGUI.java" />
       </list>
     </option>
   </component>
@@ -109,7 +128,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -152,6 +170,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
@@ -230,6 +249,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="3440" height="1378" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -243,7 +263,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18895349" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -269,6 +289,57 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/ToguzKorgoolGUI.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1802">
+          <caret line="111" column="62" selection-start-line="111" selection-start-column="62" selection-end-line="111" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/StartPageGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1360">
+          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2864#2865#0" expanded="true" />
+            <element signature="e#2899#2900#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/playTheGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+          <folding>
+            <element signature="method#computerPlay#0;class#playTheGame#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/WindowHelpGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#575#576#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2244">
+          <caret line="134" column="8" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/ToguzKorgoolGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
           <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
           <folding>
@@ -283,8 +354,8 @@
           <caret line="55" selection-start-line="55" selection-end-line="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2556#2557#0" expanded="true" />
-            <element signature="e#2591#2592#0" expanded="true" />
+            <element signature="e#2864#2865#0" expanded="true" />
+            <element signature="e#2899#2900#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -295,6 +366,8 @@
           <caret line="21" selection-start-line="21" selection-end-line="21" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#575#576#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -353,39 +426,27 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/StartPageGUI.class" />
-    <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/ToguzKorgoolGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
-          <caret line="111" column="62" selection-start-line="111" selection-start-column="62" selection-end-line="111" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1881">
+        <state relative-caret-position="2244">
           <caret line="134" column="8" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/StartPageGUI.java">
+    <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/ToguzKorgoolGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1031">
-          <caret line="86" column="28" selection-start-line="86" selection-start-column="28" selection-end-line="86" selection-end-column="28" />
+        <state relative-caret-position="391">
+          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2556#2557#0" expanded="true" />
-            <element signature="e#2591#2592#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/playTheGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="35" column="61" selection-start-line="35" selection-start-column="61" selection-end-line="35" selection-end-column="61" />
+        <state relative-caret-position="85">
+          <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
           <folding>
             <element signature="method#computerPlay#0;class#playTheGame#0" />
           </folding>
@@ -394,10 +455,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/WindowHelpGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
+        <state relative-caret-position="170">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#548#549#0" expanded="true" />
+            <element signature="e#575#576#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Front-End/src/main/java/StartPageGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2864#2865#0" expanded="true" />
+            <element signature="e#2899#2900#0" expanded="true" />
           </folding>
         </state>
       </provider>

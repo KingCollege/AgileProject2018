@@ -7,9 +7,10 @@ import javax.swing.*;
 
 /**
  * Class to create the welcome page of the Toguz Korgool game.
+ * @Author Adam, Tao, Marta, Mandu
+ * @version 0.1.1
  */
 public class StartPageGUI extends JFrame {
-
     private static int GUI_WIDTH = 820;
     private static int GUI_HEIGHT = 400;
     private JButton playAI;
@@ -19,6 +20,9 @@ public class StartPageGUI extends JFrame {
     private JPanel center = new JPanel(new GridLayout(3, 1, 10, 10));
     private JPanel centerBottom = new JPanel(new GridLayout(1, 2, 10, 0));
 
+    /**
+     * Constructor for start page
+     */
     public StartPageGUI() {
         super("Toguz Korgool");
         UIManager.put("Button.disabledText", Color.BLACK);
@@ -29,6 +33,7 @@ public class StartPageGUI extends JFrame {
         playPlayer = new JButton("Play vs Player");
 
         playAI.addActionListener(ev -> playAIWindow());
+        playPlayer.setEnabled(false);
 
         center.add(playAI);
         center.add(playPlayer);
@@ -47,12 +52,14 @@ public class StartPageGUI extends JFrame {
 
         addPadding();
 
-
         setPreferredSize(new Dimension(GUI_WIDTH, GUI_HEIGHT));
         pack();
         setVisible(true);
     }
 
+    /**
+     * method used to add padding around menu buttons
+     */
     private void addPadding() {
         JPanel left = new JPanel();
         JPanel right = new JPanel();
@@ -69,11 +76,17 @@ public class StartPageGUI extends JFrame {
         add(bottom, BorderLayout.SOUTH);
     }
 
+    /**
+     * launch game vs AI
+     */
     private void playAIWindow() {
         new ToguzKorgoolGUI();
         setVisible(false);
     }
 
+    /**
+     * close window
+     */
     private void closeWindow() {
         if(JOptionPane.showConfirmDialog(new JFrame(),
                 "Are you sure you want to quit?", "Close Window?",
@@ -83,6 +96,9 @@ public class StartPageGUI extends JFrame {
         }
     }
 
+    /**
+     * open help window
+     */
     private void helpWindow() {
         new WindowHelpGUI();
     }
