@@ -3,21 +3,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import java.util.*;
 
-public class BoardTest{
 
-    private Board board;
-
-    @Before
-    public void setUp(){
-        board = new Board;
-    }
-    @After
-    public void tearDown(){
-        board = null;
-    }
-    @Test
-    publi void
-}
 
 
 public class BoardTest {
@@ -32,7 +18,6 @@ public class BoardTest {
     public void setUp(){
         board = new Board;
     }
-
 
 
     @Test
@@ -82,19 +67,7 @@ public class BoardTest {
 }
 
     }
-    /**
-     * Tears down the test fixture.
-     * (Called after every test case method.)
-     */
-    @After
-    tearDown();
 
-    /**
-     * Sets up the test fixture.
-     * (Called before every test case method.)
-     */
-    @Before
-    setUp();
 
 
     @Test
@@ -109,20 +82,6 @@ public class BoardTest {
         assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", true, board.getAllTheHoles().get(index2).checkTuz());
     }
 
-    /**
-     * Tears down the test fixture.
-     * (Called after every test case method.)
-     */
-    @After
-    tearDown();
-
-
-    /**
-     * Sets up the test fixture.
-     * (Called before every test case method.)
-     */
-    @Before
-    setUp();
 
 
     @Test
@@ -137,20 +96,7 @@ public class BoardTest {
         assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", true, board.getAllTheHoles().get(index2).checkTuz());
     }
 
-    /**
-     * Tears down the test fixture.
-     * (Called after every test case method.)
-     */
-    @After
-    tearDown();
 
-
-    /**
-     * Sets up the test fixture.
-     * (Called before every test case method.)
-     */
-    @Before
-    setUp();
 
     @Test
     public void testTryCaptureBalls(){
@@ -162,7 +108,6 @@ public class BoardTest {
         int index2 = 2;
         tryCaptureBalls(index2, false);
         assertEquals("The opponent shouldn't capture the balls - the hole belongs to the player but has an odd number of balls.", 9, board.getAllTheHoles().get(index2).getNum());
-
 
         //can't capture the balls if the number of balls if the hole belongs to the person who made the move (even when the number of balls is evem)
         index1 = 3;
@@ -177,31 +122,36 @@ public class BoardTest {
 
     }
 
-    /**
-     * Tears down the test fixture.
-     * (Called after every test case method.)
-     */
-    @After
-    tearDown();
-
-    /**
-     * Sets up the test fixture.
-     * (Called before every test case method.)
-     */
-    @Before
-    setUp();
 
     @Test
-    public void testCaptureBallsFromTuz(){
+    public void testCaptureBallsFromTuzPlayer(){
+        captureBallsFromTuz();
+        assertEquals("No balls should be captured to Player's kazan as he does not have a tuz yet.", 0, board.getpKazan().return_num());
 
+        int index1 = 10;
+        board.getAllTheHoles().get(index1).changeNum(3);
+        tryMarkAsTuz(index1, true);
+
+        board.getAllTheHoles().get(index1).changeNum(10);
+        captureBallsFromTuz();
+        assertEquals("The hole that is a tuz should have 0 balls.", 0, board.getAllTheHoles().get(index1).getNum());
+        assertEquals("The Player's kazan should now have 10 balls.", 10, board.getpKazan().return_num());
     }
 
-    /**
-     * Tears down the test fixture.
-     * (Called after every test case method.)
-     */
-    @After
-    tearDown();
+    @Test
+    public void testCaptureBallsFromTuzOpponent(){
+        captureBallsFromTuz();
+        assertEquals("No balls should be captured to Opponent's kazan as he does not have a tuz yet.", 0, board.getoKazan().return_num());
+
+        int index1 = 4;
+        board.getAllTheHoles().get(index1).changeNum(3);
+        tryMarkAsTuz(index1, false);
+
+        board.getAllTheHoles().get(index1).changeNum(11);
+        captureBallsFromTuz();
+        assertEquals("The hole that is a tuz should have 0 balls.", 0, board.getAllTheHoles().get(index1).getNum());
+        assertEquals("The Opponent's kazan should now have 11 balls.", 11, board.getoKazan().return_num());
+    }
 
 
 
