@@ -19,7 +19,13 @@ public class BoardTest {
         board = new Board;
     }
 
-
+    
+    @Test
+    public void testHole() {
+        assertEquals("Index should be 1(getIndex)", 1, board.getAllTheHoles().get(1).getIndex());
+        assertEquals("Number of balls should be 10(increase)", 10, board.getAllTheHoles().get(1).incrementBalls().getNum());
+        assertEquals("Number of balls should be 10(changeNum)", 10, board.getAllTheHoles().get(1).changeNum(10).getNum());
+    }
     @Test
     public void testConstructor() {
         assertEquals("At first Player's kazan should have 0 balls", 0, getpKazan().return_num());
