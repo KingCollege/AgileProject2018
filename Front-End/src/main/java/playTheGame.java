@@ -20,7 +20,7 @@ public class playTheGame
 
     public Board getBoard() { return board; }
     
-    public  String computerPlay(){
+    public  static String computerPlay(){
         int bestIndex = generateTheBestIndex();
         Random r = new Random();
         int chooseHole;
@@ -47,7 +47,7 @@ public class playTheGame
     }
 
     //enhancing Computer's decision making
-    public int generateTheBestIndex(){
+    public static int generateTheBestIndex(){
         List<Hole> listOfHoles = board.getAllTheHoles();
         List<Integer> possibleMoves = new ArrayList<>();
 
