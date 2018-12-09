@@ -1,13 +1,19 @@
 
-import org.junit.*;
+
 import static org.junit.Assert.*;
-import java.util.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
+/**
+ * The test class test.
+ *
+ * @author  (your name)
+ * @version (a version number or a date)
+ */
+public class test {
 
-
-
-public class BoardTest {
-
+    private playTheGame game;
     private Board board;
 
     /**
@@ -16,26 +22,8 @@ public class BoardTest {
      */
     @Before
     public void setUp(){
-        board = new Board;
-    }
-
-    
-    @Test
-    public void testHole() {
-        assertEquals("Index should be 1(getIndex)", 1, board.getAllTheHoles().get(1).getIndex());
-        assertEquals("Number of balls should be 10(increase)", 10, board.getAllTheHoles().get(1).incrementBalls().getNum());
-        assertEquals("Number of balls should be 10(changeNum)", 10, board.getAllTheHoles().get(1).changeNum(10).getNum());
-    }
-    @Test
-    public void testConstructor() {
-        assertEquals("At first Player's kazan should have 0 balls", 0, getpKazan().return_num());
-        assertEquals("At first Opponents's kazan should have 0 balls", 0, getoKazan().return_num());
-
-        int i = 0;
-        for(Hole hole : allTheHoles){
-            i++;
-            assertEquals("Hole " + i + "out of 18 should have 9 balls", 9, hole.getNum());
-        }
+        game = new playTheGame();
+        board = game.getBoard();
     }
 
     /**
@@ -44,18 +32,33 @@ public class BoardTest {
      */
     @After
     public void tearDown(){
+        game = null;
         board = null;
     }
 
-    /**
-     * Sets up the test fixture.
-     * (Called before every test case method.)
-     */
-    @Before
-    setUp();
+    @Test
+    public void testBoardHole() {
+        assertEquals("Index should be 1(getIndex)", 1, board.getAllTheHoles().get(1).getIndex());
+        Hole hole = board.getAllTheHoles().get(1);
+        hole.incrementBalls();
+        assertEquals("Number of balls should be 10(increase)", 10, hole.getNum());
+        hole.changeNum(5);
+        assertEquals("Number of balls should be 10(changeNum)", 5, hole.getNum());
+    }
+    @Test
+    public void testBoardConstructor() {
+        assertEquals("At first Player's kazan should have 0 balls", 0, board.getpKazan().return_num());
+        assertEquals("At first Opponents's kazan should have 0 balls", 0, board.getoKazan().return_num());
+
+        int i = 0;
+        for(Hole hole : board.getAllTheHoles()){
+            i++;
+            assertEquals("Hole " + i + "out of 18 should have 9 balls", 9, hole.getNum());
+        }
+    }
 
     @Test
-    public void testMoveBallsAtTheBegining() {
+    public void testBoardMoveBallsAtTheBegining() {
         //check if the balls are moved correctly (we don't have any tuz yet)
         //but the balls may be captured to kazan from the last hole
         int index = 3;
@@ -70,93 +73,108 @@ public class BoardTest {
         assertEquals("Next hole (Opponent - 2) should have only 10 balls now", 10, board.getAllTheHoles().get(++index).getNum());
         assertEquals("Next hole (Opponent - 3) should have only 0 balls now as they are captured to kazan", 0, board.getAllTheHoles().get(++index).getNum());
         assertEquals("Player's kazan should have 10 balls now", 10, board.getpKazan().return_num());
-}
-
     }
 
-
-
     @Test
-    public void testTryMarkAsTuzPlayer(){
+    public void testBoardTryMarkAsTuzPlayer(){
         int index1 = 10;
         board.getAllTheHoles().get(index1).changeNum(3);
-        tryMarkAsTuz(index1, true);
+        board.tryMarkAsTuz(index1, true);
         assertEquals("The hole should become a player's tuz.", true, board.getAllTheHoles().get(index1).checkTuz());
 
         int index2 = 11;
-        tryMarkAsTuz(index2, true);
+        board.tryMarkAsTuz(index2, true);
         assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", true, board.getAllTheHoles().get(index2).checkTuz());
     }
 
 
 
     @Test
-    public void testTryMarkAsTuzOpponent(){
+    public void testBoardTryMarkAsTuzOpponent(){
         int index1 = 2;
         board.getAllTheHoles().get(index1).changeNum(3);
-        tryMarkAsTuz(index1, false);
+        board.tryMarkAsTuz(index1, false);
         assertEquals("The hole should become an opponent's tuz.", true, board.getAllTheHoles().get(index1).checkTuz());
 
         int index2 = 4;
-        tryMarkAsTuz(index2, false);
+        board.tryMarkAsTuz(index2, false);
         assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", true, board.getAllTheHoles().get(index2).checkTuz());
     }
 
 
 
     @Test
-    public void testTryCaptureBalls(){
+    public void testBoardTryCaptureBalls(){
         //can't capture the balls if the number of balls is odd - when constructed every hole has 9 balls
         int index1 = 11;
-        tryCaptureBalls(index1, true);
+        board.tryCaptureBalls(index1, true);
         assertEquals("The player shouldn't capture the balls - the hole belongs to the opponent but has an odd number of balls.", 9, board.getAllTheHoles().get(index1).getNum());
 
         int index2 = 2;
-        tryCaptureBalls(index2, false);
+        board.tryCaptureBalls(index2, false);
         assertEquals("The opponent shouldn't capture the balls - the hole belongs to the player but has an odd number of balls.", 9, board.getAllTheHoles().get(index2).getNum());
 
         //can't capture the balls if the number of balls if the hole belongs to the person who made the move (even when the number of balls is evem)
         index1 = 3;
         board.getAllTheHoles().get(index1).changeNum(10);
-        tryCaptureBalls(index1, true);
+        board.tryCaptureBalls(index1, true);
         assertEquals("The player shouldn't capture the balls - the hole belongs to the player.", 10, board.getAllTheHoles().get(index1).getNum());
 
         index2 = 12;
         board.getAllTheHoles().get(index2).changeNum(10);
-        tryCaptureBalls(index2, false);
+        board.tryCaptureBalls(index2, false);
         assertEquals("The opponent shouldn't capture the balls - the hole belongs to the opponent.", 10, board.getAllTheHoles().get(index2).getNum());
 
     }
 
 
     @Test
-    public void testCaptureBallsFromTuzPlayer(){
-        captureBallsFromTuz();
+    public void testBoardCaptureBallsFromTuzPlayer(){
+        board.captureBallsFromTuz();
         assertEquals("No balls should be captured to Player's kazan as he does not have a tuz yet.", 0, board.getpKazan().return_num());
 
         int index1 = 10;
         board.getAllTheHoles().get(index1).changeNum(3);
-        tryMarkAsTuz(index1, true);
+        board.tryMarkAsTuz(index1, true);
 
         board.getAllTheHoles().get(index1).changeNum(10);
-        captureBallsFromTuz();
+        board.captureBallsFromTuz();
         assertEquals("The hole that is a tuz should have 0 balls.", 0, board.getAllTheHoles().get(index1).getNum());
         assertEquals("The Player's kazan should now have 10 balls.", 10, board.getpKazan().return_num());
     }
 
     @Test
-    public void testCaptureBallsFromTuzOpponent(){
-        captureBallsFromTuz();
+    public void testBoardCaptureBallsFromTuzOpponent(){
+        board.captureBallsFromTuz();
         assertEquals("No balls should be captured to Opponent's kazan as he does not have a tuz yet.", 0, board.getoKazan().return_num());
 
         int index1 = 4;
         board.getAllTheHoles().get(index1).changeNum(3);
-        tryMarkAsTuz(index1, false);
+        board.tryMarkAsTuz(index1, false);
 
         board.getAllTheHoles().get(index1).changeNum(11);
-        captureBallsFromTuz();
+        board.captureBallsFromTuz();
         assertEquals("The hole that is a tuz should have 0 balls.", 0, board.getAllTheHoles().get(index1).getNum());
         assertEquals("The Opponent's kazan should now have 11 balls.", 11, board.getoKazan().return_num());
+    }
+
+    @Test
+    public void testGenerateTheBestIndex(){
+        for(int i = 0; i <=17; i++){
+            if (i == 6){
+                board.getAllTheHoles().get(i).changeNum(3);
+            }else if (i == 16){
+                board.getAllTheHoles().get(i).changeNum(9);
+            }else if (i == 17){
+                board.getAllTheHoles().get(i).changeNum(10);
+            }
+            else{
+                board.getAllTheHoles().get(i).changeNum(0);
+            }
+        }
+
+        int bestIndex = game.generateTheBestIndex();
+        assertEquals("The generated index should be 16 as the move will end up with capturing the most balls.", 16, bestIndex);
     }
 
 

@@ -253,4 +253,8 @@ public class Board {
     public void setAllTheHoles(List<Hole> allTheHoles) {
         this.allTheHoles = allTheHoles;
     }
+
+    public boolean getoHasTuz(){
+        return oHasTuz;
+    }
 }
