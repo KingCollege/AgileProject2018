@@ -1,30 +1,39 @@
 
-import java.util.*; 
+import java.util.*;
 public class Board {
     private List<Hole> player = new ArrayList<Hole>();
-    private kazan pKazan;
+    private Kazan pKazan;
     private List<Hole> opponent = new ArrayList<Hole>();
-    private kazan oKazan;
+    private Kazan oKazan;
     private List<Hole> allTheHoles = new ArrayList<Hole>();
     private boolean pHasTuz;
     private boolean oHasTuz;
     private int pTuzIndex;
     private int oTuzIndex;
     private String log;
-    
+
     public Board(){
         for (int i=0;i<9;i++){
-            //init the board,contains holes and kazans for both sides.
+            //init the board,contains holes and Kazans for both sides.
             //mark that the index starts from 0.
             Hole initP = new Hole(9,true,i);
             Hole initO = new Hole(9,false,i);
             player.add(initP);
             opponent.add(initO);
         }
-        pKazan = new kazan(0,true);
-        oKazan = new kazan(0,false);
+        pKazan = new Kazan(0,true);
+        oKazan = new Kazan(0,false);
         allTheHoles.addAll(player);
         allTheHoles.addAll(opponent);
+    }
+
+    public Board(List<Hole> pHoles, List<Hole> oHoles, Kazan p, Kazan o){
+      player = pHoles;
+      opponent = oHoles;
+      pKazan = p;
+      oKazan = o;
+      allTheHoles.addAll(player);
+      allTheHoles.addAll(opponent);
     }
 
     public int getBallsFromHole(int index) {
@@ -36,7 +45,7 @@ public class Board {
         boolean isPlayer = allTheHoles.get(index).getSide();
         int allTheHolesSize = allTheHoles.size();
         int indexOfHole = index;
-           
+
         //No balls
         if(allTheHoles.get(index).checkTuz() || allTheHoles.get(index).getNum() < 1)
             return false;
@@ -64,7 +73,7 @@ public class Board {
             //the hole belongs to opponent & is even - all the balls are captured (BUT balls can't be taken from player's tuz)
             if(ballsInLastHole%2 == 0 && !allTheHoles.get(indexOfHole).checkTuz()){
                 allTheHoles.get(indexOfHole).changeNum(0);
-                //to which kazan they should be placed?
+                //to which Kazan they should be placed?
                 if(isPlayer){
                     pKazan.add_balls(ballsInLastHole);
                 }else{
@@ -98,26 +107,26 @@ public class Board {
             //if there were 3 balls in the hole & the index of the hole is not 9 (actually 8) - it becomes a tuz
             if(ballsInLastHole == 3 && allTheHoles.get(indexOfHole).getIndex() != 8 && tryMarkAsTuz){
                     allTheHoles.get(indexOfHole).markAsTuz();
-                    //all the balls are transfered to the players kazan
-                    allTheHoles.get(indexOfHole).markAsTuz(); //this hole is yours now
-                    //all the balls are transfered to the players kazan
+                    //all the balls are transfered to the opposite side's Kazan
                     if(isPlayer){
                         pKazan.add_balls(3);
                         pHasTuz = true;
                         pTuzIndex = allTheHoles.get(indexOfHole).getIndex();
+                        System.out.println("Player Tuz Index " + pTuzIndex);
                         allTheHoles.get(indexOfHole).changeNum(0);
 
                     }else{
                         oKazan.add_balls(3);
                         oHasTuz = true;
                         oTuzIndex = allTheHoles.get(indexOfHole).getIndex();
+                        System.out.println("Computer Tuz Index " + oTuzIndex);
                         allTheHoles.get(indexOfHole).changeNum(0);
                     }
             }
         }
-        
-        
-        //capture all the balls from tuz to correct kazan's
+
+// legalmoves.(i => counttours(dim,  i::path))
+        //capture all the balls from tuz to correct Kazan's
         if (pHasTuz){
             if (allTheHoles.get(pTuzIndex).getNum()>0){
                 int balls = allTheHoles.get(pTuzIndex).getNum();
@@ -125,14 +134,15 @@ public class Board {
                 pKazan.add_balls(balls);
             }
         }
+
         if (oHasTuz){
             if (allTheHoles.get(oTuzIndex).getNum()>0){
                 int balls = allTheHoles.get(oTuzIndex).getNum();
                 allTheHoles.get(oTuzIndex).changeNum(0);
-                pKazan.add_balls(balls);
+                oKazan.add_balls(balls);
             }
         }
-        
+
         //need a check to switch turn with computer
         if(playTheGame.getPlayerTurn()){
             playTheGame.setPlayerTurn(false);
@@ -143,11 +153,26 @@ public class Board {
         }
         return true;
     }
-    
+
+    // 1 for player, -1 for opponent, 0 for draw, 2 for no wins
+    public int checkwin(){
+        int draw = ( (pKazan.return_num() == 81 || oKazan.return_num() == 81) &&
+              (oKazan.return_num() == pKazan.return_num()) )? 0 : -1;
+        if(draw < 0 ){
+            if(oKazan.check_win())
+              return -1;
+            if(pKazan.check_win())
+              return 1;
+            return -2;
+        }
+        else
+          return 0;
+    }
+
     public String getLog(){
         return log;
     }
-    
+
     public List<Hole> getPlayer() {
         return player;
     }
@@ -156,11 +181,11 @@ public class Board {
         this.player = player;
     }
 
-    public kazan getpKazan() {
+    public Kazan getpKazan() {
         return pKazan;
     }
 
-    public void setpKazan(kazan pKazan) {
+    public void setpKazan(Kazan pKazan) {
         this.pKazan = pKazan;
     }
 
@@ -172,11 +197,11 @@ public class Board {
         this.opponent = opponent;
     }
 
-    public kazan getoKazan() {
+    public Kazan getoKazan() {
         return oKazan;
     }
 
-    public void setoKazan(kazan oKazan) {
+    public void setoKazan(Kazan oKazan) {
         this.oKazan = oKazan;
     }
 

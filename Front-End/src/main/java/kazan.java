@@ -1,7 +1,7 @@
-public class kazan {
+public class Kazan {
     private int number;
     private boolean side;
-    public kazan(int num,boolean side){
+    public Kazan(int num,boolean side){
         number = num;
         side = side;
     }

@@ -3,7 +3,7 @@ import java.util.Random;
  * The class the links front-end gui and back-end functionalities together
  *
  * @Mandu, Adam, Tao, Marta
- * @0.1.2
+ * @0.1.1
  */
 public class playTheGame
 {
