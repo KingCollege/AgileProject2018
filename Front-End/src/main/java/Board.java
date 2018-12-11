@@ -1,5 +1,12 @@
 
 import java.util.*;
+/**
+ * A class that creates a Board and enables the 2 players to
+ * keep playing until one of them wins.
+ *
+ * @author Marta Krawczyk, Tao Lin, Mandu Shi and Adam Able
+ * @version    2018.11.28
+ */
 public class Board {
     private List<Hole> player = new ArrayList<Hole>();
     private Kazan pKazan;
@@ -11,7 +18,9 @@ public class Board {
     private int pTuzIndex;
     private int oTuzIndex;
     private String log;
-
+    /**
+     * Create a Board containing 2 sets of 9 holes and 2 kazans.
+     */
     public Board(){
         for (int i=0;i<9;i++){
             //init the board,contains holes and Kazans for both sides.
@@ -40,6 +49,11 @@ public class Board {
         return allTheHoles.get(index).getNum();
     }
 
+    /**
+     * The player picks a hole and all the balls from that hole are moved.
+     * @param index The index of the hole.
+     * @return boolean
+     */
     public boolean moveTheBalls(int index){
         int numberOfBalls = allTheHoles.get(index).getNum();
         boolean isPlayer = allTheHoles.get(index).getSide();
@@ -49,6 +63,7 @@ public class Board {
         //No balls
         if(allTheHoles.get(index).checkTuz() || allTheHoles.get(index).getNum() < 1)
             return false;
+
         //the same hole is cleared and only 1 ball is left there
         //if the hole has one korgool, it is moved to the next hole leaving the hole emptied
         if( allTheHoles.get(index).getNum() == 1)
@@ -67,6 +82,54 @@ public class Board {
             allTheHoles.get(indexOfHole).incrementBalls();
         }
 
+        //try capturing the balls & try marking as tuz
+        tryCaptureBalls(indexOfHole, isPlayer);
+
+
+        //capture all the balls from tuz to correct kazan's
+        captureBallsFromTuz();
+
+        //need a check to switch turn with computer
+        if(PlayTheGame.getPlayerTurn()){
+            PlayTheGame.setPlayerTurn(false);
+            log = PlayTheGame.computerPlay();
+        }
+        else{
+            PlayTheGame.setPlayerTurn(true);
+        }
+        return true;
+    }
+
+    /**
+     * Capture all the balls from tuz to correct kazan's.
+     */
+    public void captureBallsFromTuz(){
+        if (pHasTuz){
+            if (allTheHoles.get(pTuzIndex).getNum()>0){
+                int balls = allTheHoles.get(pTuzIndex).getNum();
+                allTheHoles.get(pTuzIndex).changeNum(0);
+                pKazan.add_balls(balls);
+            }
+        }
+        if (oHasTuz){
+            if (allTheHoles.get(oTuzIndex).getNum()>0){
+                int balls = allTheHoles.get(oTuzIndex).getNum();
+                allTheHoles.get(oTuzIndex).changeNum(0);
+                oKazan.add_balls(balls);
+            }
+        }
+    }
+
+    /**
+     * Check where the last ball was placed and whether the balls can be captured from that hole.
+     * Also check if this hole can be marked as tuz.
+     * @param index The index of the hole.
+     * @param isPlayerTemp Whose move is this one
+     */
+    public void tryCaptureBalls(int index, boolean isPlayerTemp){
+        int indexOfHole = index;
+        boolean isPlayer = isPlayerTemp;
+
         //was the last ball put in a hole belonging to the opponent?
         int ballsInLastHole = allTheHoles.get(indexOfHole).getNum();
         if (allTheHoles.get(indexOfHole).getSide() != isPlayer){
@@ -83,76 +146,74 @@ public class Board {
 
             //TUZ part:
             //we can only mark it as a tuz is a player doesn't have one yet
-            boolean tryMarkAsTuz = false;
-            if (isPlayer && !pHasTuz){
-                //& the opponent's tuz index is different than indexOfHole (if he has one)
-                if (oHasTuz){
-                    if(oTuzIndex != allTheHoles.get(indexOfHole).getIndex()){
-                        tryMarkAsTuz = true;
-                    }
-                }else{
-                    tryMarkAsTuz = true;
-                }
-            }
-            if (!isPlayer && !oHasTuz){
-                //& the opponent's tuz index is different than indexOfHole (if he has one)
-                if (pHasTuz){
-                    if(pTuzIndex != allTheHoles.get(indexOfHole).getIndex()){
-                        tryMarkAsTuz = true;
-                    }
-                }else{
-                    tryMarkAsTuz = true;
-                }
-            }
-            //if there were 3 balls in the hole & the index of the hole is not 9 (actually 8) - it becomes a tuz
-            if(ballsInLastHole == 3 && allTheHoles.get(indexOfHole).getIndex() != 8 && tryMarkAsTuz){
-                    allTheHoles.get(indexOfHole).markAsTuz();
-                    //all the balls are transfered to the opposite side's Kazan
-                    if(isPlayer){
-                        pKazan.add_balls(3);
-                        pHasTuz = true;
-                        pTuzIndex = allTheHoles.get(indexOfHole).getIndex();
-                        System.out.println("Player Tuz Index " + pTuzIndex);
-                        allTheHoles.get(indexOfHole).changeNum(0);
-
-                    }else{
-                        oKazan.add_balls(3);
-                        oHasTuz = true;
-                        oTuzIndex = allTheHoles.get(indexOfHole).getIndex();
-                        System.out.println("Computer Tuz Index " + oTuzIndex);
-                        allTheHoles.get(indexOfHole).changeNum(0);
-                    }
-            }
+            tryMarkAsTuz(indexOfHole, isPlayer);
+//
         }
 
-// legalmoves.(i => counttours(dim,  i::path))
-        //capture all the balls from tuz to correct Kazan's
-        if (pHasTuz){
-            if (allTheHoles.get(pTuzIndex).getNum()>0){
-                int balls = allTheHoles.get(pTuzIndex).getNum();
-                allTheHoles.get(pTuzIndex).changeNum(0);
-                pKazan.add_balls(balls);
-            }
-        }
-
-        if (oHasTuz){
-            if (allTheHoles.get(oTuzIndex).getNum()>0){
-                int balls = allTheHoles.get(oTuzIndex).getNum();
-                allTheHoles.get(oTuzIndex).changeNum(0);
-                oKazan.add_balls(balls);
-            }
-        }
-
-        //need a check to switch turn with computer
-        if(playTheGame.getPlayerTurn()){
-            playTheGame.setPlayerTurn(false);
-            log = playTheGame.computerPlay();
-        }
-        else{
-             playTheGame.setPlayerTurn(true);
-        }
-        return true;
     }
+
+    /**
+     * Check is that hole can be marked as tuz by the current gamer - Player or Computer.
+     * If they don't have a tuz yet and opponen't tuz does not have the same relative index
+     * PLUS if there are currently 3 balls in the hole and it is not the hole no 9
+     * THEN that hole can be marked as tuz. (of course it has to be on the opponent's side
+     * but that is checked when the method is called in tryCaptureBalls().
+     * @param index The index of the hole.
+     * @param isPlayerTemp Whose move is this one
+     */
+    public void tryMarkAsTuz(int index, boolean isPlayerTemp){
+        int indexOfHole = index;
+        boolean isPlayer = isPlayerTemp;
+        int ballsInLastHole = allTheHoles.get(indexOfHole).getNum();
+
+        //TUZ part:
+        //we can only mark it as a tuz is a player doesn't have one yet
+        boolean tryMarkAsTuz = false;
+        if (isPlayer && !pHasTuz){
+            //& the opponent's tuz index is different than indexOfHole (if he has one)
+            if (oHasTuz){
+                if(oTuzIndex != allTheHoles.get(indexOfHole).getIndex()){
+                    tryMarkAsTuz = true;
+                }
+            }else{
+                tryMarkAsTuz = true;
+            }
+        }
+        if (!isPlayer && !oHasTuz){
+            //& the opponent's tuz index is different than indexOfHole (if he has one)
+            if (pHasTuz){
+                if(pTuzIndex != allTheHoles.get(indexOfHole).getIndex()){
+                    tryMarkAsTuz = true;
+                }
+            }else{
+                tryMarkAsTuz = true;
+            }
+        }
+        //if there were 3 balls in the hole & the index of the hole is not 9 (actually 8) - it becomes a tuz
+        if(ballsInLastHole == 3 && allTheHoles.get(indexOfHole).getIndex() != 8 && tryMarkAsTuz){
+            //this hole is yours now
+            allTheHoles.get(indexOfHole).markAsTuz();
+            //all the balls are transfered to the players kazan
+            if(isPlayer){
+                pKazan.add_balls(3);
+                pHasTuz = true;
+                //Before it was allholes.get(index).getIndex()
+                //this returns the position relative to the side of the player therefore 1-9
+                //which is an incorrect way for storying tuz index.
+                pTuzIndex = indexOfHole;
+                allTheHoles.get(indexOfHole).changeNum(0);
+
+            }else{
+                oKazan.add_balls(3);
+                oHasTuz = true;
+                oTuzIndex = indexOfHole;
+                allTheHoles.get(indexOfHole).changeNum(0);
+            }
+        }
+
+    }
+
+
 
     // 1 for player, -1 for opponent, 0 for draw, 2 for no wins
     public int checkwin(){
@@ -168,6 +229,7 @@ public class Board {
         else
           return 0;
     }
+
 
     public String getLog(){
         return log;
@@ -211,5 +273,9 @@ public class Board {
 
     public void setAllTheHoles(List<Hole> allTheHoles) {
         this.allTheHoles = allTheHoles;
+    }
+
+    public boolean getoHasTuz(){
+        return oHasTuz;
     }
 }

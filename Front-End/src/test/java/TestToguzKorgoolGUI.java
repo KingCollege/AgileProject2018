@@ -1,7 +1,10 @@
 /*
-  Responsible for testing the ToguzKorgoolGUI class:
+    Responsible for testing the ToguzKorgoolGUI class:
     Such as basic button click test, test the correct graphics displayed
     Test what happens when player wins, loses or draws.
+    Responsible for testing functionalities behind the GUIs
+    The backend controllers that changes the state of the game by giving
+    it index of holes that player or computer wants to move to.
 */
 import static org.junit.Assert.*;
 import com.athaydes.automaton.Swinger;
@@ -49,6 +52,7 @@ public class TestToguzKorgoolGUI{
 
   //Test move korgools from one hole, and confirms movement
   public void testMoveRocksByButtonClick(){
+    customBoard = new Board();
     confirmMove("p1");
     KazanGraphics pKazan = (KazanGraphics) swinger.getAt("name:pKazan");
     //Checks if the correct graphics is displayed
@@ -60,11 +64,11 @@ public class TestToguzKorgoolGUI{
     test = null;
     customBoard = new Board();
     customBoard.setpKazan(new Kazan(72, true));
-    playTheGame.board = customBoard;
+    PlayTheGame.board = customBoard;
     setUp();
     confirmMove("p1");
     closePopUp();
-    assertTrue(playTheGame.board.getpKazan().return_num() == 82);
+    assertTrue(PlayTheGame.board.getpKazan().return_num() == 82);
   }
 
   //Test computer win conditions and that the correct window is returned
@@ -101,11 +105,11 @@ public class TestToguzKorgoolGUI{
     }
 
     customBoard = new Board(player, opponent, new Kazan(0, true), cKazan);
-    playTheGame.board = customBoard;
+    PlayTheGame.board = customBoard;
     setUp();
     confirmMove("p0");
     closePopUp();
-    assertTrue(playTheGame.board.getoKazan().return_num() == 82);
+    assertTrue(PlayTheGame.board.getoKazan().return_num() == 82);
   }
 
   //Test draw conditions and that the correct window is returned
@@ -143,12 +147,17 @@ public class TestToguzKorgoolGUI{
     }
 
     customBoard = new Board(player, opponent,pKazan, cKazan);
-    playTheGame.board = customBoard;
+    PlayTheGame.board = customBoard;
     setUp();
     confirmMove("p1");
     swinger.pause(2000);
     closePopUp();
-    assertTrue(playTheGame.board.getoKazan().return_num() == 81 && playTheGame.board.getpKazan().return_num() == 81);
+    assertTrue(PlayTheGame.board.getoKazan().return_num() == 81 && PlayTheGame.board.getpKazan().return_num() == 81);
+  }
+
+  @After
+  public void tearDown(){
+    swinger = null;
   }
 
 }
