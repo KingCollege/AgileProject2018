@@ -5,6 +5,8 @@
     Responsible for testing functionalities behind the GUIs
     The backend controllers that changes the state of the game by giving
     it index of holes that player or computer wants to move to.
+    @Author Adam, Tao, Marta, Mandu
+    @version    2018.11.28
 */
 import static org.junit.Assert.*;
 import com.athaydes.automaton.Swinger;

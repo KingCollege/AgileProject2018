@@ -97,7 +97,7 @@ public class BoardAndPlayGameTest {
 
         int index2 = 11;
         PlayTheGame.board.tryMarkAsTuz(index2, true);
-        assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", true, PlayTheGame.board.getAllTheHoles().get(index2).checkTuz());
+        assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", false, PlayTheGame.board.getAllTheHoles().get(index2).checkTuz());
     }
 
 
@@ -114,7 +114,7 @@ public class BoardAndPlayGameTest {
 
         int index2 = 4;
         PlayTheGame.board.tryMarkAsTuz(index2, false);
-        assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", true, PlayTheGame.board.getAllTheHoles().get(index2).checkTuz());
+        assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", false, PlayTheGame.board.getAllTheHoles().get(index2).checkTuz());
     }
 
     /**
@@ -129,7 +129,7 @@ public class BoardAndPlayGameTest {
         assertEquals("The hole should become a player's tuz.", true, PlayTheGame.board.getAllTheHoles().get(index1).checkTuz());
 
         int index2 = 1;
-        PlayTheGame.PlayTheGame.board.tryMarkAsTuz(index2, false);
+        PlayTheGame.board.tryMarkAsTuz(index2, false);
         assertEquals("The opponent should not be able to mark this hole as tuz because the player has a tuz with the same index on the other side.", false, PlayTheGame.board.getAllTheHoles().get(index2).checkTuz());
     }
 
@@ -237,7 +237,7 @@ public class BoardAndPlayGameTest {
             }
         }
 
-        int bestIndex = game.generateTheBestIndex();
+        int bestIndex = PlayTheGame.generateTheBestIndex();
         assertEquals("The generated index should be 16 as the move will end up with capturing the most balls.", 16, bestIndex);
     }
 
@@ -265,7 +265,7 @@ public class BoardAndPlayGameTest {
             }
         }
 
-        int bestIndex = game.generateTheBestIndex();
+        int bestIndex = PlayTheGame.generateTheBestIndex();
         assertEquals("The generated index should be 14 as then move will end up with capturing a tuz.", 14, bestIndex);
     }
 
