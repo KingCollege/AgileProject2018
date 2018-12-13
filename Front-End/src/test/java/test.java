@@ -36,6 +36,9 @@ public class test {
         board = null;
     }
 
+    /**
+     * Tests hole's methodes - incerement and changeNum.
+     */
     @Test
     public void testBoardHole() {
         assertEquals("Index should be 1(getIndex)", 1, board.getAllTheHoles().get(1).getIndex());
@@ -45,6 +48,12 @@ public class test {
         hole.changeNum(5);
         assertEquals("Number of balls should be 10(changeNum)", 5, hole.getNum());
     }
+
+    /**
+     * Tests Board's constructor.
+     * The kazan's should be set to 0.
+     * Every hole should have 9 balls.
+     */
     @Test
     public void testBoardConstructor() {
         assertEquals("At first Player's kazan should have 0 balls", 0, board.getpKazan().return_num());
@@ -57,6 +66,11 @@ public class test {
         }
     }
 
+    /**
+     * Tests Board's method to move the balls constructor.
+     * The balls from one hole are moved to appropriate holes.
+     * If the last one ends up in Opponent's hole and there is an even number of balls - it should be captured.
+     */
     @Test
     public void testBoardMoveBallsAtTheBegining() {
         //check if the balls are moved correctly (we don't have any tuz yet)
@@ -75,6 +89,10 @@ public class test {
         assertEquals("Player's kazan should have 10 balls now", 10, board.getpKazan().return_num());
     }
 
+    /**
+     * Tests Board's tryMarkAsTuz() method.
+     * Can the Player mark this hole as tuz?
+     */
     @Test
     public void testBoardTryMarkAsTuzPlayer(){
         int index1 = 10;
@@ -88,7 +106,10 @@ public class test {
     }
 
 
-
+    /**
+     * Tests Board's tryMarkAsTuz() method.
+     * Can the Opponent mark this hole as tuz?
+     */
     @Test
     public void testBoardTryMarkAsTuzOpponent(){
         int index1 = 2;
@@ -101,6 +122,10 @@ public class test {
         assertEquals("The hole shouldn't become a tuz - there are 9 balls (not 3).", true, board.getAllTheHoles().get(index2).checkTuz());
     }
 
+    /**
+     * Tests Board's tryMarkAsTuz() method.
+     * Opponent and Player cannot mark mirroring holes as tuz!
+     */
     @Test
     public void testBoardTryMarkAsTuzMirrorIndex(){
         int index1 = 10;
@@ -113,6 +138,10 @@ public class test {
         assertEquals("The opponent should not be able to mark this hole as tuz because the player has a tuz with the same index on the other side.", false, board.getAllTheHoles().get(index2).checkTuz());
     }
 
+    /**
+     * Tests Board's tryMarkAsTuz() method.
+     * If Player has a tuz, he/she cannot get another one.
+     */
     @Test
     public void testBoardTryMarkAsTuzAgain(){
         int index1 = 10;
@@ -126,6 +155,11 @@ public class test {
         assertEquals("The Player should no be able to capture this az tuz because he already has one.", false, board.getAllTheHoles().get(index2).checkTuz());
     }
 
+    /**
+     * Tests Board's tryCaptureBalls() method.
+     * A Player can capture balls is his last ball ends up in Opponent's hole
+     * with even number of balls or his tuz.
+     */
     @Test
     public void testBoardTryCaptureBalls(){
         //can't capture the balls if the number of balls is odd - when constructed every hole has 9 balls
@@ -150,7 +184,10 @@ public class test {
 
     }
 
-
+    /**
+     * Tests Board's captureBallsFromTuz() method.
+     * If during anyone's move balls end up in tuz they should be captured to appropriate kazans.
+     */
     @Test
     public void testBoardCaptureBallsFromTuzPlayer(){
         board.captureBallsFromTuz();
@@ -166,6 +203,10 @@ public class test {
         assertEquals("The Player's kazan should now have 10 balls.", 10, board.getpKazan().return_num());
     }
 
+    /**
+     * Tests Board's captureBallsFromTuz() method.
+     * If during anyone's move balls end up in tuz they should be captured to appropriate kazans.
+     */
     @Test
     public void testBoardCaptureBallsFromTuzOpponent(){
         board.captureBallsFromTuz();
@@ -181,6 +222,11 @@ public class test {
         assertEquals("The Opponent's kazan should now have 11 balls.", 11, board.getoKazan().return_num());
     }
 
+    /**
+     * Tests playTheGames's generateTheBestIndex() method.
+     * Instead of picking a random index, Computed chooses the one that makes the most favourable move.
+     * As a result - the biggest number of balls will be captured.
+     */
     @Test
     public void testGenerateTheBestIndex(){
         for(int i = 0; i <=17; i++){
@@ -200,6 +246,32 @@ public class test {
         assertEquals("The generated index should be 16 as the move will end up with capturing the most balls.", 16, bestIndex);
     }
 
+    /**
+     * Tests playTheGames's generateTheBestIndex() method.
+     * Instead of picking a random index, Computed chooses the one that makes the most favourable move.
+     * As a result - the biggest number of balls will be captured.
+     * If the Computer doesn't have a tuz yet though, then the index will be picked that will
+     * result in capturing a tuz.
+     */
+    @Test
+    public void testGenerateTheBestIndexTuz(){
+        for(int i = 0; i <=17; i++){
+            if (i == 2){
+                board.getAllTheHoles().get(i).changeNum(2);
+            }else if (i == 3){
+                board.getAllTheHoles().get(i).changeNum(3);
+            }else if (i == 14){
+                board.getAllTheHoles().get(i).changeNum(7);
+            }else if (i == 15){
+                board.getAllTheHoles().get(i).changeNum(7);
+            }
+            else{
+                board.getAllTheHoles().get(i).changeNum(1);
+            }
+        }
 
+        int bestIndex = game.generateTheBestIndex();
+        assertEquals("The generated index should be 14 as then move will end up with capturing a tuz.", 14, bestIndex);
+    }
 
 }
