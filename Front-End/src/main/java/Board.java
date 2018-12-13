@@ -49,7 +49,7 @@ public class Board {
         boolean isPlayer = allTheHoles.get(index).getSide();
         int allTheHolesSize = allTheHoles.size();
         int indexOfHole = index;
-           
+
         //No balls
         if(allTheHoles.get(index).checkTuz() || allTheHoles.get(index).getNum() < 1)
             return false;
@@ -75,17 +75,17 @@ public class Board {
         //try capturing the balls & try marking as tuz
         tryCaptureBalls(indexOfHole, isPlayer);
 
-        
+
         //capture all the balls from tuz to correct kazan's
         captureBallsFromTuz();
-        
+
         //need a check to switch turn with computer
         if(playTheGame.getPlayerTurn()){
             playTheGame.setPlayerTurn(false);
             log = playTheGame.computerPlay();
         }
         else{
-             playTheGame.setPlayerTurn(true);
+            playTheGame.setPlayerTurn(true);
         }
         return true;
     }
@@ -213,7 +213,7 @@ public class Board {
     public String getLog(){
         return log;
     }
-    
+
     public List<Hole> getPlayer() {
         return player;
     }
@@ -252,5 +252,9 @@ public class Board {
 
     public void setAllTheHoles(List<Hole> allTheHoles) {
         this.allTheHoles = allTheHoles;
+    }
+
+    public boolean getoHasTuz(){
+        return oHasTuz;
     }
 }
