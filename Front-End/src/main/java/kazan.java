@@ -4,7 +4,7 @@
  * @author Marta Krawczyk, Tao Lin, Mandu Shi and Adam Able
  * @version    2018.11.28
  */
-public class kazan {
+public class Kazan {
     private int number;
     private boolean side;
     public kazan(int num,boolean side){

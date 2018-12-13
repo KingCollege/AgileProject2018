@@ -5,21 +5,21 @@ import java.util.*;
  * @author Mandu Shi, Tao Lin, Marta Krawczyk and Adam Able
  * @version    2018.11.28
  */
-public class playTheGame
+public class PlayTheGame
 {
     public static Board board = new Board();
     private static boolean pTurn = true;
-    
+
     public static boolean getPlayerTurn(){
         return pTurn;
     }
-    
+
     public static void setPlayerTurn(boolean turn){
         pTurn = turn;
     }
 
     public Board getBoard() { return board; }
-    
+
     public  static String computerPlay(){
         int bestIndex = generateTheBestIndex();
         Random r = new Random();
