@@ -1,13 +1,7 @@
-
-/**
- * A class that describes a kazan.
- * @author Marta Krawczyk, Tao Lin, Mandu Shi and Adam Able
- * @version    2018.11.28
- */
 public class Kazan {
     private int number;
     private boolean side;
-    public kazan(int num,boolean side){
+    public Kazan(int num,boolean side){
         number = num;
         side = side;
     }

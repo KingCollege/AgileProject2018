@@ -1,7 +1,5 @@
 
 import java.util.*;
-
-
 /**
  * A class that creates a Board and enables the 2 players to
  * keep playing until one of them wins.
@@ -11,32 +9,44 @@ import java.util.*;
  */
 public class Board {
     private List<Hole> player = new ArrayList<Hole>();
-    private kazan pKazan;
+    private Kazan pKazan;
     private List<Hole> opponent = new ArrayList<Hole>();
-    private kazan oKazan;
+    private Kazan oKazan;
     private List<Hole> allTheHoles = new ArrayList<Hole>();
     private boolean pHasTuz;
     private boolean oHasTuz;
     private int pTuzIndex;
     private int oTuzIndex;
     private String log;
-
     /**
      * Create a Board containing 2 sets of 9 holes and 2 kazans.
      */
     public Board(){
         for (int i=0;i<9;i++){
-            //init the board,contains holes and kazans for both sides.
+            //init the board,contains holes and Kazans for both sides.
             //mark that the index starts from 0.
             Hole initP = new Hole(9,true,i);
             Hole initO = new Hole(9,false,i);
             player.add(initP);
             opponent.add(initO);
         }
-        pKazan = new kazan(0,true);
-        oKazan = new kazan(0,false);
+        pKazan = new Kazan(0,true);
+        oKazan = new Kazan(0,false);
         allTheHoles.addAll(player);
         allTheHoles.addAll(opponent);
+    }
+
+    public Board(List<Hole> pHoles, List<Hole> oHoles, Kazan p, Kazan o){
+      player = pHoles;
+      opponent = oHoles;
+      pKazan = p;
+      oKazan = o;
+      allTheHoles.addAll(player);
+      allTheHoles.addAll(opponent);
+    }
+
+    public int getBallsFromHole(int index) {
+        return allTheHoles.get(index).getNum();
     }
 
     /**
@@ -80,12 +90,12 @@ public class Board {
         captureBallsFromTuz();
 
         //need a check to switch turn with computer
-        if(playTheGame.getPlayerTurn()){
-            playTheGame.setPlayerTurn(false);
-            log = playTheGame.computerPlay();
+        if(PlayTheGame.getPlayerTurn()){
+            PlayTheGame.setPlayerTurn(false);
+            log = PlayTheGame.computerPlay();
         }
         else{
-            playTheGame.setPlayerTurn(true);
+            PlayTheGame.setPlayerTurn(true);
         }
         return true;
     }
@@ -126,7 +136,7 @@ public class Board {
             //the hole belongs to opponent & is even - all the balls are captured (BUT balls can't be taken from player's tuz)
             if(ballsInLastHole%2 == 0 && !allTheHoles.get(indexOfHole).checkTuz()){
                 allTheHoles.get(indexOfHole).changeNum(0);
-                //to which kazan they should be placed?
+                //to which Kazan they should be placed?
                 if(isPlayer){
                     pKazan.add_balls(ballsInLastHole);
                 }else{
@@ -187,26 +197,37 @@ public class Board {
             if(isPlayer){
                 pKazan.add_balls(3);
                 pHasTuz = true;
-                pTuzIndex = allTheHoles.get(indexOfHole).getIndex();
+                //Before it was allholes.get(index).getIndex()
+                //this returns the position relative to the side of the player therefore 1-9
+                //which is an incorrect way for storying tuz index.
+                pTuzIndex = indexOfHole;
                 allTheHoles.get(indexOfHole).changeNum(0);
 
             }else{
                 oKazan.add_balls(3);
                 oHasTuz = true;
-                oTuzIndex = allTheHoles.get(indexOfHole).getIndex();
+                oTuzIndex = indexOfHole;
                 allTheHoles.get(indexOfHole).changeNum(0);
             }
         }
 
     }
 
-    /**
-     * Get the number of balls in the hole.
-     * @param index The index of the hole.
-     * @return The number of balls
-     */
-    public int getBallsFromHole(int index) {
-        return allTheHoles.get(index).getNum();
+
+
+    // 1 for player, -1 for opponent, 0 for draw, 2 for no wins
+    public int checkwin(){
+        int draw = ( (pKazan.return_num() == 81 || oKazan.return_num() == 81) &&
+              (oKazan.return_num() == pKazan.return_num()) )? 0 : -1;
+        if(draw < 0 ){
+            if(oKazan.check_win())
+              return -1;
+            if(pKazan.check_win())
+              return 1;
+            return -2;
+        }
+        else
+          return 0;
     }
 
 
@@ -222,11 +243,11 @@ public class Board {
         this.player = player;
     }
 
-    public kazan getpKazan() {
+    public Kazan getpKazan() {
         return pKazan;
     }
 
-    public void setpKazan(kazan pKazan) {
+    public void setpKazan(Kazan pKazan) {
         this.pKazan = pKazan;
     }
 
@@ -238,11 +259,11 @@ public class Board {
         this.opponent = opponent;
     }
 
-    public kazan getoKazan() {
+    public Kazan getoKazan() {
         return oKazan;
     }
 
-    public void setoKazan(kazan oKazan) {
+    public void setoKazan(Kazan oKazan) {
         this.oKazan = oKazan;
     }
 
