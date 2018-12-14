@@ -1,5 +1,7 @@
-# AgileProject2018-Team Aardvark
+# AgileProject2018
+Team Aardvark:
 Mandu Shi, Marta Krawczyk, Adam Able, Tao Lin
+
 Generic structure at your meetings to follow:
 
 Attendance: record attendance and report apologies for absence.
