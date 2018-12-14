@@ -1,4 +1,7 @@
 # AgileProject2018
+Team Aardvark:
+
+Mandu Shi, Marta Krawczyk, Adam Able, Tao Lin
 
 Generic structure at your meetings to follow:
 
